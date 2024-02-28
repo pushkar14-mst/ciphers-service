@@ -12,7 +12,6 @@ class CiphersTest(TestCase):
         shift=3
         expected="zlqwhu"
         self.assertEqual(caesar_cipher(plain_text, shift), expected)
-    # find flaw in the caesar_cipher function
     def test_caesar_encoding_3(self):
         plain_text = "hello"
         shift = 1
