@@ -3,11 +3,11 @@ name: Run The Tests
 on:
   push:
     branches:
-      - master
+      - main
 
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -28,3 +28,8 @@ jobs:
         run: |
           cd ciphers_project
           python3 manage.py test
+      - name: Build and push the image
+        run: |
+          docker login --username pushkar14-mst --password ${{secrets.CIPHERS_SERVICE_TOKEN}} ghcr.io
+          docker build -t ghcr.io/pushkar14-mst/ciphers-service:latest --file Dockerfile .  
+          docker push ghcr.io/pushkar14-mst/ciphers-service:latest
